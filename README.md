@@ -1,10 +1,10 @@
-#k8s-sts-socksporxy
+# k8s-sts-socksporxy
 A simple stateful set that creates a k8s socks proxy 
 This uses https://github.com/httptoolkit/docker-socks-tunnel
 
 To setup a Stateful Set with a socks proxy
 
-#To use:
+# To use:
 
 1. Download 
 ```
