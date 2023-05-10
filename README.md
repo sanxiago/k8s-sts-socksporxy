@@ -13,6 +13,8 @@ To setup a Stateful Set with a socks proxy
 
 3. Configure your proxy to send all URLS that match, your cluster namespace:
  `*.namespace.svc.cluster.local.*`
+ To use `socks5://socksproxy-0:1080`
 
-Note: If running on a mac you need to manually forward the port
+4. Only needed if you don't have access to the pod 
+i.e: running on a mac you need to manually forward the port
  `$ kubectl port-forward pod/socksproxy-0 1080:1080 -n namespace`
