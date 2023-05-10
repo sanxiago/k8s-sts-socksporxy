@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: socksproxy
+spec:
+  serviceName: socks-tunnel-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: socks-tunnel
+  template:
+    metadata:
+      labels:
+        app: socks-tunnel
+    spec:
+      containers:
+        - name: socksproxy-container
+          image: ghcr.io/httptoolkit/docker-socks-tunnel
+          ports:
+            - containerPort: 1080
+              name: socks-tunnel
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: socksproxy-service
+spec:
+  selector:
+    app: socks-tunnel
+  type: NodePort
+  ports:
+    - name: socks-tunnel
+      port: 1080
+      targetPort: 1080
+
+# If running on a mac you need to manually forward the port
+# $ kubectl port-forward pod/socksproxy-0 1080:1080 -n namespace
+# Configure your proxy to send all URLS that match:
+# *.namespace.svc.cluster.local.*
