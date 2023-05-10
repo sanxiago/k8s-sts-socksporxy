@@ -22,9 +22,13 @@ kubectl apply -f socks_container.yaml -n namespace
 ```
 For your namespace to use your socksproxy
 ```
-socks5://socksproxy-0:1080
+socks5h://localhost:1080
 ```
 4. If you need forward the port, this is required on a MAC
 ```
  $ kubectl port-forward pod/socksproxy-0 1080:1080 -n namespace`
+```
+For example using curl:
+```
+curl http://my_service.my_namespace.svc.cluster.local:9021 --socks5-hostname localhost
 ```
