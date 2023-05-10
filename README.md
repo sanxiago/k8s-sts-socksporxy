@@ -4,11 +4,12 @@ This uses https://github.com/httptoolkit/docker-socks-tunnel
 
 To setup a Stateful Set with a socks proxy
 
-To use:
-Deploy proxy in your namespace:
+# To use:
+
+1. Deploy proxy in your namespace:
 `kubectl apply -f socks_container.yaml -n namespace`
 
-Configure your proxy to send all URLS that match, your cluster namespace:
+2. Configure your proxy to send all URLS that match, your cluster namespace:
  `*.namespace.svc.cluster.local.*`
 
  If running on a mac you need to manually forward the port
